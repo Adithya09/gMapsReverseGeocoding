@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <script src="https://polyfill.io/v3/polyfill.min.js?features=default"></script>
+  <link rel ="stylesheet" type="text/css" href="index.css">
+  <title>Google Maps Processing</title>
+  <script src="index.js" type="text/javascript"></script>
+</head>
+<body>
+  <div id="floating-panel">
+      <input id="latlng" type="text" value="51.507,0.127" />
+      <input id="submit" type="button" value="Reverse Geocode" />
+  </div>
+  <div id="map"></div>
+  <script
+    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCHvwK0g-URbHnLN9rYHdPU7P3rWfyU1aI&callback=initMap&libraries=&v=weekly">
+    async
+  </script>
+</body>
+</html>
