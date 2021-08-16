@@ -10,6 +10,12 @@ let drawingManager;
 //Defining a global coordinates variable
 let coordinates
 
+//Polygon ids
+let id;
+
+//Polygon array
+let polArray = [];
+
 //Function to make an id for each polygonOptions//Function to generate a random code for each polygon
 function makeID(){
   var result           = '';
@@ -29,9 +35,6 @@ function initMap(){
     center: {lat: 51.507, lng: 0.127 }
   });
 
-
-
-
   //Creating a drawing manager tool
   drawingManager = new google.maps.drawing.DrawingManager({
   drawingMode: google.maps.drawing.OverlayType.MARKER,
@@ -50,51 +53,43 @@ function initMap(){
 });
   drawingManager.setMap(map);
 
- const geocoder = new google.maps.Geocoder();
- const infowindow = new google.maps.InfoWindow();
- document.getElementById("submit").addEventListener("click", () => {
-   reverseGeocode(geocoder, map, infowindow);
- });
- google.maps.event.addListener(drawingManager, "overlaycomplete", function(e){
-  var coordinatesArray = e.overlay.getPath().getArray();
-  coordinatesArray = makeID();
-  console.log(coordinatesArray);
-   const input = document.getElementById("latlng").value;
-   const latlngStr = input.split(",", 2);
-   var lat = parseFloat(latlngStr[0]);
-   var lng = parseFloat(latlngStr[1])
-   var curPosition = new google.maps.LatLng(lat, lng);
+  google.maps.event.addListener(drawingManager, "overlaycomplete", function(e){
+    id = e.overlay.getPath().getArray();
+    var path =  e.overlay.getPath().getArray();
+    id = makeID();
+    console.log(id);
+    polArray.push(e.overlay);
+    console.log(polArray[0]);
 
-   if(google.maps.geometry.poly.containsLocation(curPosition, e.overlay)){
-    alert("These coordinates lie in the polygon: " + coordinatesArray);
-  }else{
-    alert("These coordinates do not lie in a polygon");
+    //Point in polygon
+    // const input = document.getElementById("latlng").value;
+    // const latlngStr = input.split(",", 2);
+    // var lat = parseFloat(latlngStr[0]);
+    // var lng = parseFloat(latlngStr[1])
+    // var curPosition = new google.maps.LatLng(lat, lng);
+
+    //document.getElementById("submit").addEventListener("click", () => {
+      // if(google.maps.geometry.poly.containsLocation(curPosition, e.overlay)){
+      //   alert("These coordinates lie in the polygon: " + id);
+      // }
+  });
+
+    const input = document.getElementById("latlng").value;
+    const latlngStr = input.split(",", 2);
+    var lat = parseFloat(latlngStr[0]);
+    var lng = parseFloat(latlngStr[1])
+    var coords = new google.maps.LatLng(lat, lng);
+
+    document.getElementById("submit").addEventListener("click", () => {
+      // if(google.maps.geometry.poly.containsLocation(curPosition, e.overlay)){
+      //   alert("These coordinates lie in the polygon: " + id);
+
+    for(i = 0; i < polArray.length; i++){
+        if(google.maps.geometry.poly.containsLocation(coords, polArray[i])){
+          alert("This point lies in the polygon: " + id);
+        }else{
+          alert("This point does not lie in a polygon");
+        }
+      }
+    });
   }
-});
-
- }
-
-function reverseGeocode(geocoder, map, infowindow){
-const input = document.getElementById("latlng").value;
- const latlngStr = input.split(",", 2);
- const latlng = {
-   lat: parseFloat(latlngStr[0]),
-   lng: parseFloat(latlngStr[1]),
- };
- geocoder
-   .geocode({ location: latlng })
-   .then((response) => {
-     if (response.results[0]) {
-       map.setZoom(11);
-       marker = new google.maps.Marker({
-         position: latlng,
-         map: map,
-       });
-       infowindow.setContent(response.results[0].formatted_address);
-       infowindow.open(map, marker);
-    } else {
-       window.alert("No results found");
-    }
-  })
-   .catch((e) => window.alert("Geocoder failed due to: " + e));
-}
