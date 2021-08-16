@@ -10,10 +10,10 @@ let drawingManager;
 //Defining a global coordinates variable
 let coordinates
 
-//Polygon ids
+//Defining a global polygon ids variable
 let id;
 
-//Polygon array
+//Defining a global polygon array
 let polArray = [];
 
 //Function to make an id for each polygonOptions//Function to generate a random code for each polygon
@@ -60,36 +60,26 @@ function initMap(){
     console.log(id);
     polArray.push(e.overlay);
     console.log(polArray[0]);
-
-    //Point in polygon
-    // const input = document.getElementById("latlng").value;
-    // const latlngStr = input.split(",", 2);
-    // var lat = parseFloat(latlngStr[0]);
-    // var lng = parseFloat(latlngStr[1])
-    // var curPosition = new google.maps.LatLng(lat, lng);
-
-    //document.getElementById("submit").addEventListener("click", () => {
-      // if(google.maps.geometry.poly.containsLocation(curPosition, e.overlay)){
-      //   alert("These coordinates lie in the polygon: " + id);
-      // }
   });
 
-    const input = document.getElementById("latlng").value;
-    const latlngStr = input.split(",", 2);
-    var lat = parseFloat(latlngStr[0]);
-    var lng = parseFloat(latlngStr[1])
-    var coords = new google.maps.LatLng(lat, lng);
-
     document.getElementById("submit").addEventListener("click", () => {
-      // if(google.maps.geometry.poly.containsLocation(curPosition, e.overlay)){
-      //   alert("These coordinates lie in the polygon: " + id);
-
-    for(i = 0; i < polArray.length; i++){
-        if(google.maps.geometry.poly.containsLocation(coords, polArray[i])){
-          alert("This point lies in the polygon: " + id);
-        }else{
-          alert("This point does not lie in a polygon");
-        }
-      }
+      recursiveCheck();
     });
+  }
+
+function recursiveCheck(length){
+  var length = polArray.length;
+  const input = document.getElementById("latlng").value;
+  const latlngStr = input.split(",", 2);
+  var lat = parseFloat(latlngStr[0]);
+  var lng = parseFloat(latlngStr[1])
+  var coords = new google.maps.LatLng(lat, lng);
+  for(i = 0; i < length; i++){
+    var lastPoly = polArray[polArray.length - 1];
+      if(google.maps.geometry.poly.containsLocation(coords, lastPoly)){
+        alert("This point lies in the polygon: " + lastPoly);
+      }else{
+        recursiveCheck(length - 1);
+      }
+    }
   }
