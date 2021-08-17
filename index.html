@@ -12,11 +12,16 @@
 <body>
   <div id="floating-panel">
       <input id="latlng" type="text" value="51.507,0.127" />
-      <input id="submit" type="button" value="Reverse Geocode" />
+      <input id="submit" type="button" value="Check point in polygon" />
+      <input id="marker1" type="text" value="51.507,0.127" />
+      <input id="marker2" type="text" value="51.3748, 0.0942"/>
+      <input id="routeSubmit" type="button" value="Calculate Route" />
+      <input id="refresh" type="button" value="Refresh Map" />
+      <div id="msg"></div>
   </div>
   <div id="map"></div>
   <script
-    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCHvwK0g-URbHnLN9rYHdPU7P3rWfyU1aI&callback=initMap&libraries=&v=weekly">
+    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCHvwK0g-URbHnLN9rYHdPU7P3rWfyU1aI&callback=initMap&libraries=&v=weekly&libraries=drawing">
     async
   </script>
 </body>

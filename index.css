@@ -8,3 +8,33 @@ body {
   margin: 0;
   padding: 0;
 }
+
+#floating-panel {
+  position: absolute;
+  bottom: 10px;
+  left: 25%;
+  z-index: 5;
+  background-color: #fff;
+  padding: 5px;
+  border: 1px solid #999;
+  text-align: center;
+  font-family: "Roboto", "sans-serif";
+  line-height: 30px;
+  padding-left: 10px;
+}
+
+#floating-panel {
+  position: absolute;
+  bottom: 5px;
+  left: 50%;
+  margin-left: -180px;
+  width: 400px;
+  z-index: 5;
+  background-color: #fff;
+  padding: 5px;
+  border: 1px solid #999;
+}
+
+#latlng {
+  width: 225px;
+}
