@@ -31,6 +31,7 @@ Function to check if the given point lies within any of the polygons in the
 array
 */
 function checkPIP(){
+  var isWithin = false;
   var length = polArray.length;
   const input = document.getElementById("latlng").value;
   const latlngStr = input.split(",", 2);
@@ -40,8 +41,10 @@ function checkPIP(){
   for(i = 0; i < length; i++){
     if(google.maps.geometry.poly.containsLocation(coords, polArray[i])){
       alert("The point lies inside polygon: " + i);
+      isWithin = true;
     }
   }
+  return isWithin;
 }
 
 //Function to refresh the map
@@ -101,9 +104,8 @@ function initMap(){
     //Switch statement to handle the cases
     switch(checkPIP()){
       case true:
-        alert("The point lies in polygon: " + polArray[length]);
         break;
-      case false:
+      default:
         alert("The point does not lie in a polygon");
         console.log("The point does not lie in a polygon");
         break;
@@ -164,8 +166,9 @@ document.getElementById("routeSubmit").addEventListener("click", () => {
          return;
        }
        else {
-         document.getElementById('msg').innerHTML += "Driving distance and duration from "
-         + marker1position + " to" + marker2position + "is "
+         document.getElementById('msg').innerHTML +=
+         "Driving distance and duration from "
+         + marker1position + " to " + marker2position + " is "
          + directionsData.distance.text + " (" + directionsData.duration.text
          + ").";
        }
