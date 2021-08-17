@@ -166,7 +166,7 @@ document.getElementById("routeSubmit").addEventListener("click", () => {
          return;
        }
        else {
-         document.getElementById('msg').innerHTML +=
+         document.getElementById('msg').innerHTML =
          "Driving distance and duration from "
          + marker1position + " to " + marker2position + " is "
          + directionsData.distance.text + " (" + directionsData.duration.text
