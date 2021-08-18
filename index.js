@@ -86,10 +86,9 @@ function calcEnteredRoutes(){
           return;
       }else {
         document.getElementById('msg').innerHTML =
-        "Driving distance and duration from "
-        + marker1position + " to " + marker2position + " is "
-        + directionsData.distance.text + " (" + directionsData.duration.text
-        + ").";
+        "Driving distance: " +
+          directionsData.distance.text + ", Duration: " +
+         directionsData.duration.text;
       }
     }
   });
@@ -141,10 +140,9 @@ function calcClickedRoutes(){
               return;
             }else {
               document.getElementById('msg').innerHTML =
-              "Driving distance and duration from "
-              + clickedPoint1 + " to " + clickedPoint2 + " is "
-              + directionsData.distance.text + " (" + directionsData.duration.text
-              + ").";
+              "Driving distance: " +
+                directionsData.distance.text + ", Duration: " +
+               directionsData.duration.text;
             }
           }
         });
@@ -154,6 +152,7 @@ function calcClickedRoutes(){
 
 //Function to refresh the map
 function refresh(){
+  document.getElementById("latlng").value = "";
   document.getElementById('msg').innerHTML = "";
   document.getElementById("marker1").value = "";
   document.getElementById("marker2").value = "";
