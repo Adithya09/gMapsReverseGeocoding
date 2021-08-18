@@ -30,8 +30,8 @@ function checkPIP(){
 }
 
 /*
-Function to calculate distance and duration between points manually entered
-by user on the map
+Function to calculate driving distance and duration between points manually
+entered by user on the map
 */
 function calcEnteredRoutes(){
   //Getting the coordinates of point A and placing a marker at these coords
@@ -94,8 +94,9 @@ function calcEnteredRoutes(){
   });
 }
 
- /*
- Calculate routes based on two points clicked on the map by the user
+/*
+Function to calculate driving distance and duration between two points on the
+map clicked by the user
 */
 function calcClickedRoutes(){
   google.maps.event.addListener(map, "click", function(event){
@@ -153,12 +154,16 @@ function calcClickedRoutes(){
 //Function to refresh the map
 function refresh(){
   document.getElementById("latlng").value = "";
-  document.getElementById('msg').innerHTML = "";
+  document.getElementById("msg").innerHTML = "";
   document.getElementById("marker1").value = "";
   document.getElementById("marker2").value = "";
   initMap();
 }
 
+/*
+Initialising the map, centered at London with the drawing manager and route
+calculation tools
+*/
 function initMap(){
   //Creating a new map with the center in London
   var myLatlng = new google.maps.LatLng(51.507, 0.127);
