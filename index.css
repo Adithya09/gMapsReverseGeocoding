@@ -38,3 +38,17 @@ body {
 #latlng {
   width: 225px;
 }
+
+#floating-panel2 {
+  position: absolute;
+  bottom: 10px;
+  left: 10%;
+  z-index: 5;
+  background-color: #fff;
+  padding: 5px;
+  border: 1px solid #999;
+  text-align: center;
+  font-family: "Roboto", "sans-serif";
+  line-height: 30px;
+  padding-left: 10px;
+}
