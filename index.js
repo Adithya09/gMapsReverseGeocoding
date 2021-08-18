@@ -176,14 +176,8 @@ function initMap(){
     drawingControlOptions: {
       position: google.maps.ControlPosition.TOP_CENTER,
       drawingModes: [
-        google.maps.drawing.OverlayType.MARKER,
-        google.maps.drawing.OverlayType.POLYLINE,
         google.maps.drawing.OverlayType.POLYGON
       ],
-    },
-    markerOptions: {
-      draggable: true,
-      clickable: true,
     },
     polygonOptions: {
       draggable: true,
