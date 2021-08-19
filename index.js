@@ -228,6 +228,7 @@ function refresh(){
   document.getElementById("msg2").innerHTML = "";
   document.getElementById("marker1").value = "";
   document.getElementById("marker2").value = "";
+  polArray = [];
   initMap();
 }
 
